@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000
 
 app.get("/",(req,res)=>{
     res.json({
-        massage:"nodejs server is running",
+        massage:"nodejs server is running but slightly changed",
         status:"success"
     });
 });
