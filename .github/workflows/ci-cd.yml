@@ -27,7 +27,7 @@ jobs:
         run: npm test
 
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }} .
+        run: docker build -t nodejs-devops-app .
 
       - name: Login to Docker Hub
         if: github.event_name == 'push'
@@ -39,7 +39,7 @@ jobs:
       - name: Push Docker Image
         if: github.event_name == 'push'
         run: |
-          docker tag ${{ secrets.DOCKER_IMAGE_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
-          docker tag ${{ secrets.DOCKER_IMAGE_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+          docker tag nodejs-devops-app ${{ secrets.DOCKER_USERNAME }}/nodejs-devops-app:latest
+          docker tag nodejs-devops-app ${{ secrets.DOCKER_USERNAME }}/nodejs-devops-app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-devops-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-devops-app:${{ github.sha }}
