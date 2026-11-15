@@ -29,9 +29,11 @@ app.get("/api/users",(req,res)=>{
 
 
 
-app.listen(PORT,()=>{
+if(require.main === module){
+    app.listen(PORT,()=>{
     console.log("server is running");
     
 })
+}
 
 module.exports = app;
